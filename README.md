@@ -63,6 +63,18 @@ Trace::getInstance()
 
 The ```getCurrentSegment()``` method will always return the most recently opened segment, allowing you to nest as deeply as necessary.
 
+### Adding an exception to a trace
+
+You can add as many exceptions to your trace as necessary. Nested exceptions will be flattened and included in the trace.
+Adding an exception does _not_ set error/fault flag.
+
+```php   
+Trace::getInstance()
+    ->getCurrentSegment()
+    ->addException($exception)
+    ->setError(true);
+```
+
 ### Ending a trace
 
 At the end of your request, you'll want to end and submit your trace. By default only submitting via the AWS X-Ray daemon is supported.
@@ -73,8 +85,3 @@ Trace::getInstance()
     ->setResponseCode(http_response_code())
     ->submit(new DaemonSegmentSubmitter());
 ```
-
-## Features not yet implemented
-
-* Exception and stack trace support
-* Submission of incomplete segments
