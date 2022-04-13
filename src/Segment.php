@@ -236,6 +236,7 @@ class Segment implements JsonSerializable
             'name' => $this->name ?? null,
             'start_time' => $this->startTime,
             'end_time' => $this->endTime,
+            'in_progress' => is_null($this->endTime),
             'subsegments' => empty($this->subsegments) ? null : $this->subsegments,
             'type' => $this->independent ? 'subsegment' : null,
             'fault' => $this->fault,
