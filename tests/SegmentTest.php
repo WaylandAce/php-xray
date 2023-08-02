@@ -413,4 +413,38 @@ class SegmentTest extends TestCase
 
         $this->assertNotContains('aws', $serialised);
     }
+
+    /**
+     * @dataProvider provideGetTraceIdCases
+     */
+    public function testGetTraceId(?string $traceId, ?string $expectedTraceId): void
+    {
+        $segment = new Segment();
+        $segment->setTraceId($traceId);
+
+        $this->assertEquals($expectedTraceId, $segment->getTraceId());
+    }
+
+    public function provideGetTraceIdCases(): iterable
+    {
+        yield [null, null];
+        yield ['123', '123'];
+    }
+
+    /**
+     * @dataProvider provideGetParentIdCases
+     */
+    public function testGetParentId(?string $parentId, ?string $expectedParentId): void
+    {
+        $segment = new Segment();
+        $segment->setParentId('123');
+
+        $this->assertEquals('123', $segment->getParentId());
+    }
+
+    public function provideGetParentIdCases(): iterable
+    {
+        yield [null, null];
+        yield ['123', '123'];
+    }
 }

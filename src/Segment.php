@@ -147,14 +147,14 @@ class Segment implements JsonSerializable
         return $this;
     }
 
-    public function setTraceId(string $traceId): self
+    public function setTraceId(string $traceId = null): self
     {
         $this->traceId = $traceId;
 
         return $this;
     }
 
-    public function getTraceId(): string
+    public function getTraceId(): ?string
     {
         return $this->traceId;
     }
@@ -203,7 +203,7 @@ class Segment implements JsonSerializable
         return $this;
     }
 
-    public function getParentId(): string
+    public function getParentId(): ?string
     {
         return $this->parentId;
     }
